@@ -12,7 +12,27 @@ let loaded_bundler = 1
 let cpoOriginal = &cpo
 set cpo&vim
 
-call bundler#SetupBufCommands()
+augroup bundlerPlugin
+  autocmd!
+  autocmd QuickfixCmdPost make* call bundler#ConvertErrorMessages()
+  autocmd BufNewFile,BufRead Gemfile call bundler#SetupBufCommands()
+  autocmd BufEnter * call <SID>EnableBundlerPlugin()
+augroup END
+
+function s:EnableBundlerPlugin()
+  let gemfilePath = findfile("Gemfile", getcwd())
+  if filereadable(gemfilePath)
+    call bundler#SetupBufCommands()
+    silent doautocmd bundlerPlugin
+  endif
+endfunction
+
+call s:EnableBundlerPlugin()
+
+" Default key map
+if !hasmapto('<Plug>Bundle')
+    map <unique> <Leader>B <Plug>Bundle
+endif
 
 let &cpo = cpoOriginal
 unlet cpoOriginal
