@@ -4,7 +4,7 @@ Author:  Susan Potter <meNOSPAM@susanpotter.net>         *bundler-author*
 License: Charityware (see |license|)
 
 This plugin is only available if 'compatible' is not set and Vim version 7.00 
-or above.
+or above. Tested by |bundler-author| in Vim version 7.2 and Vim version 7.3.
 
 INTRODUCTION                                    *bundler*
 
@@ -20,8 +20,6 @@ that are part of Git repositories).
                         :!bundle [args] but chdir to the project tree first.
 
 MAPPINGS                                        *bundler-mappings*
-
-SPECIFYING REVISIONS                            *bundler-revision*
 
 ABOUT                                           *bundler-about*
 
